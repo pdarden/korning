@@ -1,0 +1,48 @@
+<h1><%= @employee.name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= @employee.name %></td>
+        <td><a href="mailto:<%=@employee.email%>"><%= @employee.email %></a></td>
+      </tr>
+  </tbody>
+</table>
+<h2>Sales</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sale Amount</th>
+      <th>Sale Date</th>
+      <th>Units Sold</th>
+      <th>Invoice Number</th>
+      <th>Invoice Frequency</th>
+      <th>Product</th>
+      <th>Customer</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sales.where(employee_id: @employee.id).order(sale_amount: :desc).each do |sale| %>
+      <% @customer = @customers.where(id: sale.customer_id).pluck(:name).to_s.tr('["', '').tr(']"', '') %>
+      <% @product = @products.where(id: sale.product_id).pluck(:name).to_s.tr('["', '').tr(']"', '') %>
+      <tr>
+        <td>$<%= "%.2f" % sale.sale_amount %></td>
+        <td><%= sale.sale_date %></td>
+        <td><%= sale.units_sold %></td>
+        <td><%= sale.invoice_no %></td>
+        <td><%= sale.invoice_frequency %></td>
+        <td><%= @product %></td>
+        <td><%= @customer %></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>

@@ -4,6 +4,9 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    @employee = Employee.fine(params[:id])
+    @employee = Employee.find(params[:id])
+    @sales = Sale.all
+    @customers = Customer.all
+    @products = Product.all
   end
 end

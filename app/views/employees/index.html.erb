@@ -3,7 +3,6 @@
 <table>
   <thead>
     <tr>
-      <th>Id</th>
       <th>Name</th>
       <th>Email</th>
     </tr>
@@ -12,8 +11,7 @@
   <tbody>
     <% @employees.each do |employee| %>
       <tr>
-        <td><%= employee.id %></td>
-        <td><%= employee.name %></td>
+        <td><%= link_to employee.name, './employees/' + employee.id.to_s %></td>
         <td><a href="mailto:<%=employee.email%>"><%= employee.email %></a></td>
       </tr>
     <% end %>
