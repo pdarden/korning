@@ -15,6 +15,9 @@
   </thead>
 
   <tbody>
+    <% date = @sales.order(sale_date: :desc).first %>
+    <% last_date = date.sale_date %>
+    <% @sales.where("sale_date >= ?", last_date - 3.month ).order(sale_date: :desc).each do |sale| %>
       <% @employee = @employees.where(id: sale.employee_id).pluck(:name).to_s.tr('["', '').tr(']"', '') %>
       <% @customer = @customers.where(id: sale.customer_id).pluck(:name).to_s.tr('["', '').tr(']"', '') %>
       <tr>
