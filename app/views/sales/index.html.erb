@@ -1,0 +1,32 @@
+<h1>Sales Within the Last 3 Months</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Invoice Number</th>
+      <th>Invoice Frequency</th>
+      <th>Units Sold</th>
+      <th>Price Per Unit</th>
+      <th>Sold By</th>
+      <th>Customer</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <% @employee = @employees.where(id: sale.employee_id).pluck(:name).to_s.tr('["', '').tr(']"', '') %>
+      <% @customer = @customers.where(id: sale.customer_id).pluck(:name).to_s.tr('["', '').tr(']"', '') %>
+      <tr>
+        <td><%= sale.sale_date %></td>
+        <td>$<%= sale.sale_amount %></td>
+        <td><%= sale.invoice_no %></td>
+        <td><%= sale.invoice_frequency %></td>
+        <td><%= sale.units_sold %></td>
+        <td>$<%= "%.2f" % (sale.sale_amount.to_f / sale.units_sold.to_f) %></td>
+        <td><%= @employee %></td>
+        <td><%= @customer %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
