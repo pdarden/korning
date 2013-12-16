@@ -1,4 +1,8 @@
 Korning::Application.routes.draw do
+  root 'pages#index'
+  resources :employees, only: [:index, :show]
+  resources :customers, only: [:index]
+  resources :products, only: [:index]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

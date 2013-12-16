@@ -1,0 +1,23 @@
+<h1>Customers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Accounte Number</th>
+      <th>Website</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.id %></td>
+        <td><%= customer.name %></td>
+        <td><%= customer.account_no %></td>
+        <td><a href="<%=customer.website%>" target="_blank"><%= customer.website %></a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
